@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PASSWORD GENERATOR</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">PASSWORD GENERATOR</h1>
+
+        <div class="password">
+            <input class="display" id="display" type="text">
+           <p>Enter the length of the password: <input type="number" id="length"></p>
+            <button class="generate" id="generate" onclick="generatePassword()">GENERATE</button>
+            <button class="generate" id="reset" onclick="reset()">RESET</button>
+        </div>
+    </div>
+    <script>
+        let display = document.getElementById('display') 
+        let generate = document.getElementById('generate')
+        let length = document.getElementById('length')
+        let chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let numbers = '0123456789';
+        let symbols = '!@#$%^&*';
+
+        function generatePassword(){
+            let pass ="";
+            if(length.value < 8){
+                alert("password must be greater than 8 characters")
+            }
+            else{
+                 let i=0;
+                while (i<length.value) {
+                pass += chars[Math.floor(Math.random()*chars.length)];
+                pass += numbers[Math.floor(Math.random()*numbers.length)];
+                pass += symbols[Math.floor(Math.random()*symbols.length)];
+                 i += 3;
+                }
+                 pass=pass.substring(0,length.value)
+                 display.value = pass
+            }
+        } 
+            function reset(){
+                window.location.reload()
+             }
+
+    </script>
+</body>
+</html>
